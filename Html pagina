@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Tienda de Danna Alfonso — Bosque Nupcial</title>
+  <meta name="description" content="Boutique nupcial estilo Twilight: vestidos, accesorios, zapatos y velos. Agenda tu cita para probarte en el bosque.">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+  <header class="header" role="banner">
+    <div class="brand">
+      <h1>Bosque Nupcial — <span class="pill">Tienda de Danna Alfonso</span></h1>
+      <p class="sub">Vestidos de novia y estilismo con alma de bosque. ✨</p>
+    </div>
+
+    <!-- Pestañas principales -->
+    <nav class="tabs" aria-label="Secciones">
+      <button class="tab active" data-tab="productos">Productos</button>
+      <button class="tab" data-tab="servicios">Otros servicios</button>
+      <button class="tab" data-tab="cita">Agendar cita</button>
+    </nav>
+
+    <!-- Filtro de categoría -->
+    <div class="filtros" role="region" aria-label="Filtros de productos">
+      <label for="categoria">Filtrar por categoría:</label>
+      <select id="categoria" name="categoria">
+        <option value="todos">Todos</option>
+        <option value="Vestidos">Vestidos</option>
+        <option value="Accesorios">Accesorios</option>
+        <option value="Zapatos">Zapatos</option>
+        <option value="Velos">Velos</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="layout" id="main" tabindex="-1">
+    <!-- Productos -->
+    <section id="tab-productos" class="tab-panel is-visible" aria-live="polite" aria-busy="false">
+      <div id="productos"></div>
+      <div id="hints-vacios" class="hint" style="display:none"></div>
+    </section>
+
+    <!-- Otros servicios -->
+    <section id="tab-servicios" class="tab-panel">
+      <div id="otros-servicios" class="servicios">
+        <h2>Otros servicios</h2>
+        <div class="grid-serv">
+          <article class="card-serv">
+            <h4>Maquillaje & peinado</h4>
+            <p class="muted">Prueba + día del evento (look natural o glam).</p>
+            <button class="button" type="button" data-servicio="maquillaje">Solicitar info</button>
+          </article>
+          <article class="card-serv">
+            <h4>Catering</h4>
+            <p class="muted">Menús de bosque: orgánico, vegano o clásico.</p>
+            <button class="button" type="button" data-servicio="catering">Solicitar info</button>
+          </article>
+          <article class="card-serv">
+            <h4>Fotografía & video</h4>
+            <p class="muted">Cobertura estilo cine entre luces y árboles.</p>
+            <button class="button" type="button" data-servicio="foto">Solicitar info</button>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agendar cita -->
+    <section id="tab-cita" class="tab-panel">
+      <div id="agendar-cita" class="cita" aria-labelledby="h-cita">
+        <h2 id="h-cita">Agendar cita para prueba de vestidos</h2>
+        <form id="form-cita" novalidate>
+          <div>
+            <label for="cita-nombre">Nombre</label>
+            <input id="cita-nombre" name="nombre" required placeholder="Tu nombre completo"/>
+          </div>
+          <div>
+            <label for="cita-email">Email</label>
+            <input id="cita-email" name="email" type="email" required placeholder="tucorreo@ejemplo.com"/>
+          </div>
+          <div>
+            <label for="cita-telefono">Teléfono</label>
+            <input id="cita-telefono" name="telefono" type="tel" required placeholder="+57 ..."/>
+          </div>
+          <div>
+            <label for="cita-ciudad">Ciudad</label>
+            <input id="cita-ciudad" name="ciudad" placeholder="Tu ciudad"/>
+          </div>
+          <div>
+            <label for="cita-fecha">Fecha</label>
+            <input id="cita-fecha" name="fecha" type="date" required/>
+          </div>
+          <div>
+            <label for="cita-hora">Hora</label>
+            <input id="cita-hora" name="hora" type="time" required/>
+          </div>
+          <div class="full">
+            <label for="cita-tipo">Estilo preferido</label>
+            <select id="cita-tipo" name="tipo">
+              <option>Princesa</option>
+              <option>Sirena</option>
+              <option>Corte A</option>
+              <option>Boho</option>
+              <option>Imperio</option>
+              <option>Minimalista</option>
+              <option>Encaje Vintage</option>
+            </select>
+          </div>
+          <div>
+            <label for="cita-presupuesto">Presupuesto aprox. (USD)</label>
+            <input id="cita-presupuesto" name="presupuesto" type="number" min="0" step="50" placeholder="ej. 1200"/>
+          </div>
+          <div class="full">
+            <label for="cita-msg">Notas</label>
+            <textarea id="cita-msg" name="msg" rows="3" placeholder="Medidas, referencias, preferencias..."></textarea>
+          </div>
+          <div class="full">
+            <label><input type="checkbox" id="cita-contacto" required/> Acepto ser contactada por WhatsApp/Email</label>
+          </div>
+          <button class="cta full" type="submit">📅 Agendar cita</button>
+          <p id="cita-ok" class="hint full" style="display:none">¡Cita registrada! Te contactaremos pronto.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- Carrito -->
+    <aside class="carrito" aria-label="Carrito de compras">
+      <h2>🛒 Carrito</h2>
+      <p><strong>Productos en carrito: <span id="cantidad-carrito">0</span></strong></p>
+      <ul id="lista-carrito"></ul>
+
+      <div class="totales">
+        <p>Subtotal: <strong id="subtotal-text">$0.00</strong></p>
+        <p>Descuento: <strong id="descuento-text">$0.00</strong></p>
+        <p>Impuestos: <strong id="impuestos-text">$0.00</strong></p>
+        <p class="total">Total: <strong id="total-text">$0.00</strong></p>
+      </div>
+
+      <div class="acciones">
+        <button id="btn-vaciar" class="vaciar" type="button">🧼 Vaciar</button>
+        <button id="btn-finalizar" class="finalizar" type="button">✅ Finalizar</button>
+      </div>
+
+      <div class="pago">
+        <h3>💳 Método de pago</h3>
+        <div id="paypal-button-container" style="margin-top:10px; display:none;"></div>
+        <p class="hint">Sandbox PayPal (client-id=sb). Moneda en USD para pruebas.</p>
+      </div>
+      <div id="live" class="sr" aria-live="polite"></div>
+    </aside>
+  </main>
+
+  <!-- PayPal SDK sandbox -->
+  <script src="https://www.paypal.com/sdk/js?client-id=sb&currency=USD&components=buttons,funding-eligibility"></script>
+  <!-- App -->
+  <script src="app.js"></script>
+</body>
+</html>
