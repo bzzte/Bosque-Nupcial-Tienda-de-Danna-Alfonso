@@ -1,0 +1,116 @@
+/* ===== Twilight / Bosque ===== */
+:root{
+  --bg:#0f1512;         /* bosque oscuro */
+  --bg-soft:#151d19;    /* capa */
+  --panel:#18231e;      /* panel profundo */
+  --card:#1e2a24;       /* carta musgo */
+  --text:#e9edea;       /* marfil frío */
+  --muted:#a8b2ac;      /* musgo claro */
+  --accent:#c8aa6e;     /* dorado luciérnaga */
+  --accent-2:#9a7a46;   /* dorado más oscuro */
+  --ok:#2aa66a;
+  --warn:#d15b5b;
+  --info:#6b86ff;
+  --border:#2a3b34;
+  --shadow:0 12px 40px rgba(0,0,0,.35);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{
+  font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, rgba(200,170,110,.08), transparent 70%),
+    radial-gradient(900px 500px at 10% -10%, rgba(200,170,110,.06), transparent 70%),
+    var(--bg);
+  color:var(--text);
+}
+
+/* Encabezado con tu fondo Twilight */
+.header{
+  position:relative; padding:28px 20px 16px; border-bottom:1px solid var(--border);
+  background:
+    linear-gradient(180deg, rgba(24,35,30,.88), rgba(24,35,30,.65)),
+    url('https://i.pinimg.com/736x/ef/1d/d3/ef1dd3a81cf7b7f5c8f7499fbd0c36b9.jpg') center/cover no-repeat;
+}
+.brand h1{
+  margin:0 0 6px; font-family:"Playfair Display", serif; font-weight:700; letter-spacing:.3px;
+  color:var(--accent); font-size: clamp(26px,4vw,40px); text-shadow:0 2px 8px rgba(0,0,0,.4);
+}
+.sub{margin:0; color:var(--muted)}
+.pill{display:inline-block; padding:2px 8px; border-radius:999px; border:1px solid rgba(200,170,110,.35); color:var(--accent)}
+
+.tabs{display:flex; gap:10px; margin:14px 0 8px; flex-wrap:wrap}
+.tab{
+  background:var(--card); color:var(--text); border:1px solid var(--border);
+  border-radius:999px; padding:8px 14px; cursor:pointer; transition:transform .12s ease, background .2s ease;
+}
+.tab:hover{transform:translateY(-1px)}
+.tab.active{background:var(--accent-2); border-color:transparent}
+
+.filtros{display:flex; gap:8px; align-items:center; margin:10px 0 0}
+label{font-weight:600}
+select{
+  background:var(--card); color:var(--text); border:1px solid var(--border);
+  border-radius:10px; padding:10px 12px
+}
+
+/* Layout */
+.layout{display:grid; grid-template-columns: 1.7fr .9fr; gap:18px; padding:18px}
+@media (max-width:960px){ .layout{grid-template-columns:1fr} }
+
+/* Paneles tabs */
+.tab-panel{display:none}
+.tab-panel.is-visible{display:block}
+
+/* Productos */
+#productos{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px}
+.producto{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--panel);
+  border:1px solid var(--border); border-radius:16px; padding:12px;
+  display:flex; flex-direction:column; box-shadow:var(--shadow);
+  transition:transform .15s ease, box-shadow .15s ease, border-color .2s ease;
+}
+.producto:hover{transform:translateY(-3px); border-color:rgba(200,170,110,.45)}
+.producto img{width:100%; height:280px; object-fit:cover; border-radius:12px; background:#0c120f}
+.producto h3{font-family:"Playfair Display",serif; font-size:18px; margin:10px 0 6px}
+.precio{margin:0 0 12px; color:var(--accent)}
+.button{background:var(--accent-2); border:none; color:#fff; padding:10px; border-radius:10px; cursor:pointer}
+
+/* Carrito */
+.carrito{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)), var(--panel);
+  padding:18px; border-radius:16px; border:1px solid var(--border); box-shadow:var(--shadow);
+  position:sticky; top:20px; height:max-content;
+}
+.carrito h2{margin-top:0; font-family:"Playfair Display",serif}
+#lista-carrito{list-style:none; padding:0; margin:10px 0 0; max-height:360px; overflow:auto}
+#lista-carrito li{
+  background:var(--card); border:1px solid var(--border); border-radius:12px; padding:10px;
+  display:flex; justify-content:space-between; align-items:center; gap:10px; margin-bottom:8px
+}
+.qty{display:flex; align-items:center; gap:6px}
+.qty button{border:1px solid var(--border); background:#101712; color:#eaecea; border-radius:8px; padding:4px 10px; cursor:pointer}
+.remove{background:var(--warn); color:#fff; border:none; border-radius:8px; padding:6px 12px; cursor:pointer}
+.totales p{margin:6px 0}.totales .total{font-size:18px}
+.acciones{display:flex; gap:10px; margin-top:10px; flex-wrap:wrap}
+.vaciar{background:var(--warn); color:#fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer}
+.finalizar{background:var(--info); color:#fff; border:none; padding:10px 12px; border-radius:10px; cursor:pointer}
+.pago{margin-top:16px; background:#101712; padding:12px; border-radius:12px; border:1px solid var(--border)}
+.hint{background:rgba(200,170,110,.08); border:1px dashed rgba(200,170,110,.35); padding:10px; border-radius:10px; color:var(--muted)}
+.sr{position:absolute; left:-9999px}
+
+/* Servicios y Cita */
+.servicios, .cita{
+  background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,0)) , var(--panel);
+  border:1px solid var(--border); border-radius:16px; padding:18px; box-shadow:var(--shadow)
+}
+.grid-serv{display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:14px}
+.card-serv{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px}
+.card-serv h4{margin:8px 0 6px; font-family:"Playfair Display",serif}
+
+.cita form{display:grid; gap:10px; grid-template-columns:1fr 1fr}
+.cita form .full{grid-column:1 / -1}
+.cita input,.cita textarea,.cita select{
+  width:100%; padding:10px 12px; border:1px solid var(--border); border-radius:10px; background:#101712; color:var(--text)
+}
+.cta{background:var(--ok); color:#08110d; border:none; padding:12px 14px; border-radius:12px; cursor:pointer}
